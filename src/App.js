@@ -5,13 +5,13 @@ function App() {
   const [text, setText] = useState([]);
   const [value, setValue] = useState("");
   const handleChange = (e) => {
-    setValue(e.target.value);
+    setValue({ id: text.length, message: e.target.value });
   };
   const onAdd = () => {
     setText([...text, value]);
   };
   const onDelete = (index) => {
-    const array = text.filter((x, i) => i !== index);
+    const array = text.filter((item) => item.id !== index);
 
     setText(array);
   };
@@ -23,15 +23,15 @@ function App() {
         <div>
           {text.map((item, index) => (
             <Text
-              text={item}
+              text={item.message}
               key={index}
               onDelete={() => {
-                onDelete(index);
+                onDelete(item.id);
               }}
             />
           ))}
         </div>
-        <input onChange={handleChange} value={value} />
+        <input onChange={handleChange} value={value.message} />
         <button style={{ marginTop: 10, fontSize: 18 }} onClick={onAdd}>
           Add
         </button>
