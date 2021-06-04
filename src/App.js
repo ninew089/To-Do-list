@@ -3,16 +3,16 @@ import React, { useState } from "react";
 import Text from "./component/Text";
 function App() {
   const [text, setText] = useState([]);
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState({ id: Math.random(), message: "" });
   const handleChange = (e) => {
-    setValue({ id: text.length, message: e.target.value });
+    setValue({ id: Math.random(), message: e.target.value });
   };
   const onAdd = () => {
     setText([...text, value]);
+    setValue({ id: Math.random(), message: "" });
   };
   const onDelete = (index) => {
     const array = text.filter((item) => item.id !== index);
-
     setText(array);
   };
 
